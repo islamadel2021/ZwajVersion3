@@ -1,0 +1,29 @@
+<div class="rtl container mt-5">
+  <div *ngIf="!registerMode" style="text-align: center">
+    <h2 style="font-family: &quot;JF Flat&quot;">
+      زواج يأتي لك بشريكك في الحياة
+    </h2>
+    <h5 style="font-family: &quot;JF Flat&quot;">
+      تخيل حياتك مع توأم روحك. مع زواج، أنت الآن على بعد خطوة من تحقيق حلمك
+    </h5>
+    <div class="text-center mt-4">
+      <button
+        (click)="registerToggle()"
+        style="font-family: &quot;JF Flat&quot;"
+        class="btn btn-secondary btn-lg"
+      >
+        إشترك معنا
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="registerMode" class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <app-register
+          (cancelRegister)="cancelRegister($event)"
+        ></app-register>
+      </div>
+    </div>
+  </div>
+</div>

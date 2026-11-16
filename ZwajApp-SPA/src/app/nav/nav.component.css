@@ -1,0 +1,16 @@
+.nav-link:hover,
+.nav-link:focus {
+  text-decoration: none;
+  color: pink !important;
+}
+
+.nav-link {
+  color: white !important;
+}
+
+.btn-dark:hover,
+.btn-dark:focus {
+  text-decoration: none;
+  color: black !important;
+  background: pink !important;
+}

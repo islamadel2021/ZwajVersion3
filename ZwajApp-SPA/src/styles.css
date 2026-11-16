@@ -1,3 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
-@import "bootstrap/dist/css/bootstrap.min.css";
+@import "bootstrap/dist/css/bootstrap.rtl.min.css";
 @import "@fortawesome/fontawesome-free/css/all.min.css";
+
+@font-face {
+  font-family: "ah-naskh-hadith";
+  src: url("/fonts/18410-ah-naskh-hadith.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Droid-Arabic-Kufi-1";
+  src: url("/fonts/Droid-Arabic-Kufi-1.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Droid-Arabic-Kufi";
+  src: url("/fonts/Droid-Arabic-Kufi.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Droid-Sans-Arabic";
+  src: url("/fonts/Droid-Sans-Arabic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "JF-Flat";
+  src: url("/fonts/JF-Flat-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "ToyorAljanah";
+  src: url("/fonts/ToyorAljanah-Regular.otf") format("opentype");
+}

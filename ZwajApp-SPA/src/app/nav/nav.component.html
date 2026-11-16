@@ -1,0 +1,118 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a
+      style="
+        margin-top: -10px;
+        color: pink;
+        font-family: ToyorAljanah;
+        font-size: 2.25rem;
+        font-weight: bolder;
+      "
+      class="navbar-brand"
+      href="#"
+    >
+      <i class="fa fa-heart" aria-hidden="true"></i>زواج<i
+        class="fa fa-heart"
+        aria-hidden="true"
+      ></i>
+    </a>
+
+    <ul
+      style="
+        letter-spacing: 1px;
+        font-weight: bold;
+        font-family: &quot;JF Flat&quot;;
+        font-size: 1.2rem;
+      "
+      class="navbar-nav ms-auto mb-2 mb-lg-0"
+    >
+      <li class="nav-item">
+        <a class="nav-link" href="#">الرئيسية</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">بحث</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">تواصل</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">دردشة</a>
+      </li>
+      <li class="nav-item" *ngIf="loggedIn()">
+        <a class="nav-link" href="#" (click)="loggedOut()">خروج</a>
+      </li>
+    </ul>
+
+    <!-- قائمة المستخدم (Dropdown) بطريقة Bootstrap 5 القياسية والحديثة -->
+    <div class="dropdown" *ngIf="loggedIn()">
+      <a
+        style="
+          letter-spacing: 1px;
+          font-weight: bold;
+          font-family: &quot;JF Flat&quot;;
+          font-size: 1.2rem;
+        "
+        class="dropdown-toggle text-light nav-link text-decoration-none"
+        href="#"
+        role="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        مرحباً بك
+      </a>
+      <ul class="dropdown-menu dropdown-menu-end mt-2 text-end">
+        <li>
+          <a class="dropdown-item" href="#"
+            ><i class="fa fa-user-o me-2" aria-hidden="true"></i> ملفي الشخصي</a
+          >
+        </li>
+        <li><hr class="dropdown-divider" /></li>
+        <li>
+          <a class="dropdown-item" href="#" (click)="loggedOut()"
+            ><i class="fa fa-sign-out me-2" aria-hidden="true"></i> تسجيل
+            الخروج</a
+          >
+        </li>
+      </ul>
+    </div>
+
+    <!-- نموذج تسجيل الدخول يظهر فقط لو المستخدم مش مسجل -->
+    <form
+      *ngIf="!loggedIn()"
+      (ngSubmit)="login()"
+      #loginForm="ngForm"
+      class="d-flex align-items-center"
+    >
+      <input
+        name="username"
+        required
+        class="form-control ms-2"
+        type="text"
+        placeholder="إسم المشترك"
+        [(ngModel)]="model.username"
+      />
+
+      <input
+        name="password"
+        required
+        class="form-control ms-2"
+        type="password"
+        placeholder="كلمة السر"
+        [(ngModel)]="model.password"
+      />
+
+      <button
+        [disabled]="!loginForm.valid"
+        style="
+          font-weight: bold;
+          font-family: &quot;JF Flat&quot;;
+          font-size: 1rem;
+        "
+        class="btn btn-secondary text-nowrap"
+        type="submit"
+      >
+        تفضل بالدخول
+      </button>
+    </form>
+  </div>
+</nav>
