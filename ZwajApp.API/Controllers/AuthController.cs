@@ -46,6 +46,9 @@ public class AuthController : ControllerBase
     [HttpPost("login")]
     public async Task<IActionResult> Login(UserForLoginDto userDto)
     {
+
+        throw new Exception("Computer says no!");
+
         var user = await authRepository.Login(userDto.Username.ToLower(), userDto.Password);
         if (user == null)
         {
@@ -75,5 +78,7 @@ public class AuthController : ControllerBase
         {
             token = tokenHandler.WriteToken(token)
         });
+
+
     }
 }
