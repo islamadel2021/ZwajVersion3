@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../_services/auth.service';
+import { AlertifyService } from '../_services/alertify.service';
 
 @Component({
   selector: 'app-register',
@@ -23,14 +24,23 @@ export class RegisterComponent implements OnInit {
 
   model: { username?: string; password?: string } = {};
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private alertifyService: AlertifyService,
+  ) {}
 
   ngOnInit(): void {}
 
   register(): void {
     this.authService.register(this.model).subscribe({
-      next: () => console.log('تم التسجيل بنجاح'),
-      error: (error) => console.log('فشل في التسجيل', error),
+      next: () => {
+        console.log('تم التسجيل بنجاح');
+        this.alertifyService.success('تم التسجيل بنجاح');
+      },
+      error: (error) => {
+        console.log('فشل في التسجيل', error);
+        this.alertifyService.error(error);
+      },
     });
   }
 

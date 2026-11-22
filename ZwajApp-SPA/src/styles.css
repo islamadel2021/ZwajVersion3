@@ -1,6 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import "bootstrap/dist/css/bootstrap.rtl.min.css";
+@import "bootswatch/dist/Sketchy/bootstrap.min.css";
 @import "@fortawesome/fontawesome-free/css/all.min.css";
+
+@import "alertifyjs/build/css/alertify.min.css";
+@import "alertifyjs/build/css/themes/bootstrap.min.css";
+
+@import url("./myStyle.css");
 
 @font-face {
   font-family: "ah-naskh-hadith";

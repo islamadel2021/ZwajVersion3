@@ -18,6 +18,7 @@
     </a>
 
     <ul
+      *ngIf="loggedIn()"
       style="
         letter-spacing: 1px;
         font-weight: bold;
@@ -38,14 +39,12 @@
       <li class="nav-item">
         <a class="nav-link" href="#">دردشة</a>
       </li>
-      <li class="nav-item" *ngIf="loggedIn()">
-        <a class="nav-link" href="#" (click)="loggedOut()">خروج</a>
-      </li>
     </ul>
 
     <!-- قائمة المستخدم (Dropdown) بطريقة Bootstrap 5 القياسية والحديثة -->
-    <div class="dropdown" *ngIf="loggedIn()">
+    <div dropdown class="dropdown" *ngIf="loggedIn()">
       <a
+        dropdownToggle
         style="
           letter-spacing: 1px;
           font-weight: bold;
@@ -59,8 +58,9 @@
         aria-expanded="false"
       >
         مرحباً بك
+        {{ authService.decodedToken?.unique_name | titlecase }}
       </a>
-      <ul class="dropdown-menu dropdown-menu-end mt-2 text-end">
+      <ul *dropdownMenu class="dropdown-menu dropdown-menu-end mt-2 text-end">
         <li>
           <a class="dropdown-item" href="#"
             ><i class="fa fa-user-o me-2" aria-hidden="true"></i> ملفي الشخصي</a
