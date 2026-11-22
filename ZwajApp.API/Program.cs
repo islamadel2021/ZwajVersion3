@@ -29,6 +29,7 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
+builder.Services.AddScoped<IZwajRepository, ZwajRepository>();
 
 var tokenKey = builder.Configuration["TokenKey"]
     ?? throw new InvalidOperationException("TokenKey is missing in configuration.");
@@ -46,6 +47,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ClockSkew = TimeSpan.Zero
         };
     });
+builder.Services.AddTransient<TrialData>();
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 
@@ -76,6 +80,21 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+// using (var scope = app.Services.CreateScope())
+// {
+//     var services = scope.ServiceProvider;
+//     try
+//     {
+//         var trialData = services.GetRequiredService<TrialData>();
+//         trialData.TrialUsers();
+//     }
+//     catch (Exception ex)
+//     {
+//         var logger = services.GetRequiredService<ILogger<Program>>();
+//         logger.LogError(ex, "حدث خطأ أثناء إضافة البيانات التجريبية للمستخدمين.");
+//     }
+// }
 
 app.UseCors("CorsPolicy");
 
