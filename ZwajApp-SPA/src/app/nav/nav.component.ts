@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../_services/auth.service';
 import { CommonModule } from '@angular/common';
 import { AlertifyService } from '../_services/alertify.service';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css'],
-  imports: [FormsModule, CommonModule, BsDropdownModule],
+  imports: [FormsModule, CommonModule, BsDropdownModule, RouterLink],
 })
 export class NavComponent {
   model: { username?: string; password?: string } = {};
+  private router = inject(Router);
 
   constructor(
     public authService: AuthService,
@@ -29,6 +31,9 @@ export class NavComponent {
         console.log('فشل في الدخول', error);
         this.alertifyService.error(error + ' - فشل في الدخول');
       },
+      complete: () => {
+        this.router.navigate(['/members']);
+      },
     });
   }
 
@@ -39,5 +44,7 @@ export class NavComponent {
   loggedOut(): void {
     localStorage.removeItem('token');
     this.alertifyService.success('تم الخروج بنجاح');
+
+    this.router.navigate(['']);
   }
 }

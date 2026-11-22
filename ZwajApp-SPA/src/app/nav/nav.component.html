@@ -9,7 +9,7 @@
         font-weight: bolder;
       "
       class="navbar-brand"
-      href="#"
+      routerLink="['']"
     >
       <i class="fa fa-heart" aria-hidden="true"></i>زواج<i
         class="fa fa-heart"
@@ -28,16 +28,16 @@
       class="navbar-nav ms-auto mb-2 mb-lg-0"
     >
       <li class="nav-item">
-        <a class="nav-link" href="#">الرئيسية</a>
+        <a class="nav-link" [routerLink]="['/home']">الرئيسية</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">بحث</a>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/members']">بحث</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">تواصل</a>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/lists']">تواصل</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">دردشة</a>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/messages']">دردشة</a>
       </li>
     </ul>
 
