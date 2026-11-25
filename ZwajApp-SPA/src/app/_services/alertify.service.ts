@@ -8,12 +8,54 @@ declare let alertify: any;
 export class AlertifyService {
   constructor() {}
 
-  confirm(message: string, okCallback: () => any): void {
+  // confirm(message: string, okCallback: () => any): void {
+  //   alertify.confirm(message, function (e: any) {
+  //     if (e) {
+  //       okCallback();
+  //     } else {
+  //     }
+  //   });
+  // }
+
+  confirm(
+    message: string,
+    okCallback: () => any,
+    cancelCallback?: () => any,
+  ): void {
     alertify.confirm(message, function (e: any) {
       if (e) {
         okCallback();
-      } else {
+      } else if (cancelCallback) {
+        cancelCallback();
       }
+    });
+  }
+
+  promisifyConfirm(
+    title: string,
+    message: string,
+    options = {},
+  ): Promise<ConfirmResult> {
+    return new Promise<ConfirmResult>((resolve) => {
+      alertify
+        .confirm(
+          title,
+          message,
+          () => resolve(ConfirmResult.Ok),
+          () => resolve(ConfirmResult.Cancel),
+        )
+        .set(
+          Object.assign(
+            {},
+            {
+              closableByDimmer: false,
+              defaultFocus: 'cancel',
+              frameless: false,
+              closable: false,
+            },
+            options,
+          ),
+        );
     });
   }
 
@@ -32,6 +74,11 @@ export class AlertifyService {
   message(message: string): void {
     alertify.message(message);
   }
+}
+
+export enum ConfirmResult {
+  Ok = 1,
+  Cancel = 0,
 }
 
 alertify.defaults = {

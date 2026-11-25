@@ -19,16 +19,14 @@ export class MemberlistsComponent implements OnInit {
   route = inject(ActivatedRoute);
   alertService = inject(AlertifyService);
 
-  constructor(
-  ) {}
+  constructor() {}
 
   ngOnInit() {
     // this.getUsers();
-  this.route.data.subscribe((data) => {
+    this.route.data.subscribe((data) => {
       this.users = data['users'];
-    
+    });
   }
-
   // getUsers() {
   //   this.userService.getUsers().subscribe(
   //     (users: User[]) => {

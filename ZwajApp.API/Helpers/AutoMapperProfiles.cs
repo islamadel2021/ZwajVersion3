@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using ZwajApp.API.Dtos;
+using ZwajApp.API.Dtos.ZwajApp.API.Dtos;
 using ZwajApp.API.Models;
 
 namespace ZwajApp.API.Helpers
@@ -16,7 +17,7 @@ namespace ZwajApp.API.Helpers
                 .ForMember(dest => dest.PhotoUrl, opt =>
                 {
                     opt.MapFrom(src => src.Photos.FirstOrDefault(p => p.IsMain).Url);
-                })   
+                })
                  .ForMember(dest => dest.Age, opt =>
                 {
                     opt.MapFrom(src => src.DateOfBirth.CalculateAge());
@@ -35,6 +36,8 @@ namespace ZwajApp.API.Helpers
                 ;
 
             CreateMap<Photo, PhotoForDetailsDto>();
+
+            CreateMap<UserForUpdateDto, User>();
         }
 
     }

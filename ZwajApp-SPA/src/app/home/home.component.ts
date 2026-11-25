@@ -2,6 +2,8 @@ import { Component, inject, OnInit } from '@angular/core';
 import { RegisterComponent } from '../register/register.component';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../_services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -12,12 +14,18 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HomeComponent implements OnInit {
   private http = inject(HttpClient);
+  private authService = inject(AuthService);
+  private router = inject(Router);
 
   registerMode = false;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.authService.loggedIn()) {
+      this.router.navigate(['/members']);
+    }
+  }
 
   registerToggle(): void {
     this.registerMode = true;
